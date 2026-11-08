@@ -8,6 +8,19 @@ public record RippleCarryAdder(boolean[] inputA, boolean[] inputB, boolean carry
 
     public static final int WIDTH = 4;
 
+    /** The 4 sum bits, and whether the answer was too big for 4 bits. */
+    public record Result(boolean[] sum, boolean carryOut) {
+
+        public Result {
+            sum = sum.clone();
+        }
+
+        @Override
+        public boolean[] sum() {
+            return sum.clone();
+        }
+    }
+
     /** Checks the inputs and copies the arrays so callers can't change them later. */
     public RippleCarryAdder {
         inputA = checkWidth(inputA).clone();
@@ -24,25 +37,15 @@ public record RippleCarryAdder(boolean[] inputA, boolean[] inputB, boolean carry
         return inputB.clone();
     }
 
-    public boolean[] sum() {
+    public Result output() {
         boolean[] sum = new boolean[WIDTH];
-        ripple(sum);
-        return sum;
-    }
-
-    public boolean carryOut() {
-        return ripple(new boolean[WIDTH]);
-    }
-
-    /** Runs the carry through all bits, fills in the sum bits, and returns the final carry. */
-    private boolean ripple(boolean[] sum) {
         boolean carry = carryIn;
         for (int i = 0; i < WIDTH; i++) {
-            FullAdder adder = new FullAdder(inputA[i], inputB[i], carry);
-            sum[i] = adder.sum();
-            carry = adder.carryOut();
+            FullAdder.Result bit = new FullAdder(inputA[i], inputB[i], carry).output();
+            sum[i] = bit.sum();
+            carry = bit.carryOut();
         }
-        return carry;
+        return new Result(sum, carry);
     }
 
     private static boolean[] checkWidth(boolean[] bits) {

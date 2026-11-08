@@ -5,21 +5,12 @@ import gate.OrGate;
 /** Adds two bits and a carry-in, using two half adders and an OR gate. */
 public record FullAdder(boolean inputA, boolean inputB, boolean carryIn) {
 
-    public boolean sum() {
-        return secondHalf().sum();
-    }
+    public record Result(boolean sum, boolean carryOut) {}
 
-    public boolean carryOut() {
-        return new OrGate(firstHalf().carry(), secondHalf().carry()).evaluate();
-    }
-
-    /** Adds the two input bits. */
-    private HalfAdder firstHalf() {
-        return new HalfAdder(inputA, inputB);
-    }
-
-    /** Adds the carry-in to the first half adder's sum. */
-    private HalfAdder secondHalf() {
-        return new HalfAdder(firstHalf().sum(), carryIn);
+    public Result output() {
+        HalfAdder.Result first = new HalfAdder(inputA, inputB).output();
+        HalfAdder.Result second = new HalfAdder(first.sum(), carryIn).output();
+        boolean carryOut = new OrGate(first.carry(), second.carry()).evaluate();
+        return new Result(second.sum(), carryOut);
     }
 }
