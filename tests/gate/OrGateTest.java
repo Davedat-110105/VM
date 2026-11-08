@@ -9,24 +9,24 @@ public class OrGateTest {
     @Test
     void returnsFalseWhenBothInputsAreFalse() {
         OrGate OrTest = new OrGate(false, false);
-        assertFalse(OrTest.evaluate());
+        assertFalse(OrTest.output());
     }
 
     @Test
     void returnsTrueWhenOnlySecondInputIsTrue() {
         OrGate OrTest = new OrGate(false, true);
-        assertTrue(OrTest.evaluate());
+        assertTrue(OrTest.output());
     }
 
     @Test
     void returnsTrueWhenOnlyFirstInputIsTrue() {
         OrGate OrTest = new OrGate(true, false);
-        assertTrue(OrTest.evaluate());
+        assertTrue(OrTest.output());
     }
 
     @Test
     void returnsTrueWhenBothInputsAreTrue() {
         OrGate OrTest = new OrGate(true, true);
-        assertTrue(OrTest.evaluate());
+        assertTrue(OrTest.output());
     }
 }

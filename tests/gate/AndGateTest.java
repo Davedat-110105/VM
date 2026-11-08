@@ -9,24 +9,24 @@ public class AndGateTest {
     @Test
     void returnsFalseWhenBothInputsAreFalse() {
         AndGate AndTest = new AndGate(false, false);
-        assertFalse(AndTest.evaluate());
+        assertFalse(AndTest.output());
     }
 
     @Test
     void returnsFalseWhenOnlySecondInputIsTrue() {
         AndGate AndTest = new AndGate(false, true);
-        assertFalse(AndTest.evaluate());
+        assertFalse(AndTest.output());
     }
 
     @Test
     void returnsFalseWhenOnlyFirstInputIsTrue() {
         AndGate AndTest = new AndGate(true, false);
-        assertFalse(AndTest.evaluate());
+        assertFalse(AndTest.output());
     }
 
     @Test
     void returnsTrueWhenBothInputsAreTrue() {
         AndGate AndTest = new AndGate(true, true);
-        assertTrue(AndTest.evaluate());
+        assertTrue(AndTest.output());
     }
 }

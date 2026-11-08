@@ -9,24 +9,24 @@ public class XorGateTest {
     @Test
     void returnsFalseWhenBothInputsAreFalse() {
         XorGate XorTest = new XorGate(false, false);
-        assertFalse(XorTest.evaluate());
+        assertFalse(XorTest.output());
     }
 
     @Test
     void returnsTrueWhenOnlySecondInputIsTrue() {
         XorGate XorTest = new XorGate(false, true);
-        assertTrue(XorTest.evaluate());
+        assertTrue(XorTest.output());
     }
 
     @Test
     void returnsTrueWhenOnlyFirstInputIsTrue() {
         XorGate XorTest = new XorGate(true, false);
-        assertTrue(XorTest.evaluate());
+        assertTrue(XorTest.output());
     }
 
     @Test
     void returnsFalseWhenBothInputsAreTrue() {
         XorGate XorTest = new XorGate(true, true);
-        assertFalse(XorTest.evaluate());
+        assertFalse(XorTest.output());
     }
 }

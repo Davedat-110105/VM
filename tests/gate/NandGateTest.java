@@ -9,24 +9,24 @@ public class NandGateTest {
     @Test
     void returnsTrueWhenBothInputsAreFalse() {
         NandGate NandTest = new NandGate(false, false);
-        assertTrue(NandTest.evaluate());
+        assertTrue(NandTest.output());
     }
 
     @Test
     void returnsTrueWhenOnlySecondInputIsTrue() {
         NandGate NandTest = new NandGate(false, true);
-        assertTrue(NandTest.evaluate());
+        assertTrue(NandTest.output());
     }
 
     @Test
     void returnsTrueWhenOnlyFirstInputIsTrue() {
         NandGate NandTest = new NandGate(true, false);
-        assertTrue(NandTest.evaluate());
+        assertTrue(NandTest.output());
     }
 
     @Test
     void returnsFalseWhenBothInputsAreTrue() {
         NandGate NandTest = new NandGate(true, true);
-        assertFalse(NandTest.evaluate());
+        assertFalse(NandTest.output());
     }
 }
